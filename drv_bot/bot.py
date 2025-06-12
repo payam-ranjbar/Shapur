@@ -142,9 +142,11 @@ async def handle_dr_void_mention(update: Update, context: ContextTypes.DEFAULT_T
 # --- SRP 8: Main handler for forwarded messages ---
 async def handle_forwarded_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     name = extract_name_from_forwarded(update)
+    madarjende_ha = ["sepide","sepideh","amirhosein","amirhossein"]
     if not name:
         await send_male_sticker(update, context)
-
+    elif name.lower() in madarjende_ha:
+        await update.message.reply_text("گروه جای اسم این حرومیا نیست", reply_to_message_id=update.message.message_id)
         return
 
     gender = await get_gender(name)
@@ -152,7 +154,8 @@ async def handle_forwarded_message(update: Update, context: ContextTypes.DEFAULT
     print(f"Group Chat ID: {update.effective_chat.id}")
     if gender == "male":
         # Send sticker for males
-        await send_male_sticker(update, context)
+        # await send_male_sticker(update, context)
+        await update.message.reply_text("رنجبر پسر @pm_ranj", reply_to_message_id=update.message.message_id)
     else:
         # Handle female/femboy cases
         title = format_void_title(gender)

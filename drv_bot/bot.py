@@ -125,6 +125,12 @@ async def handle_dr_void_mention(update: Update, context: ContextTypes.DEFAULT_T
     if has_shapur_mention(update.message.text):
         if update.message.from_user.username == "pm_ranj":
             await update.message.reply_text("چاکرم", reply_to_message_id=update.message.message_id)
+        elif update.message.from_user.username == "TheDrVoid":
+            responses = [
+                "راست میگه",
+            ]
+            response = random.choice(responses)
+            await update.message.reply_text(response, reply_to_message_id=update.message.message_id)
         else:
             responses = [
                 "به تو نمیرسه!",
